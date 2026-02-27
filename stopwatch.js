@@ -17,6 +17,9 @@ let hourElement = document.getElementById('hour');
 let stopResume = document.getElementById('stop-resume-btn');
 
 start.addEventListener('click',()=>{
+  beginEnd();
+});
+function beginEnd(){
   if(!isClockRunning) { 
     startTimer();
     start.innerText = 'Reset';
@@ -24,8 +27,7 @@ start.addEventListener('click',()=>{
     reset();
     start.innerText = 'Start';
   }
-});
-
+}
 function startTimer(){
   isClockRunning = true;
   intervalId = setInterval(() => {
@@ -50,6 +52,9 @@ function startTimer(){
 }
 
 stopResume.addEventListener('click',()=>{
+  playPause();
+});
+function playPause(){
   if(isClockRunning) {
     if (!isStop) {
       isStop = true;
@@ -61,8 +66,7 @@ stopResume.addEventListener('click',()=>{
       stopResume.innerText = 'Stop';
     }
   }
-});
-
+}
 function reset(){
   time.second = 0;
   time.minute = 0;
@@ -80,11 +84,26 @@ function reset(){
 const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
+  changeTheme();
+});
+function changeTheme(){
   document.body.classList.toggle('dark');
   document.body.classList.toggle('light');
 
   themeToggle.textContent =
     document.body.classList.contains('dark')
       ? "Light Mode"
-      : "Dark Mode";
+      : "Dark Mode";  
+}
+
+document.addEventListener('keydown',(event) =>{
+  const key = event.key;
+  if(key === 'Enter' || key.toLocalLowerCase() === 's'){
+    beginEnd();
+  } else if(key.toLocaleLowerCase()==='p' || key === 'MediaPlayPause'){
+    playPause();
+  } else if(key.toLocalLowerCase() === 'd'){
+    changeTheme();
+  });
+
 });
