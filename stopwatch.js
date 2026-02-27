@@ -19,6 +19,7 @@ let stopResume = document.getElementById('stop-resume-btn');
 start.addEventListener('click',()=>{
   beginEnd();
 });
+
 function beginEnd(){
   if(!isClockRunning) { 
     startTimer();
@@ -28,6 +29,7 @@ function beginEnd(){
     start.innerText = 'Start';
   }
 }
+
 function startTimer(){
   isClockRunning = true;
   intervalId = setInterval(() => {
@@ -54,6 +56,7 @@ function startTimer(){
 stopResume.addEventListener('click',()=>{
   playPause();
 });
+
 function playPause(){
   if(isClockRunning) {
     if (!isStop) {
@@ -86,26 +89,27 @@ const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('click', () => {
   changeTheme();
 });
+
 function changeTheme(){
   document.body.classList.toggle('dark');
   document.body.classList.toggle('light');
-
+  
   themeToggle.textContent =
     document.body.classList.contains('dark')
       ? "Light Mode"
-      : "Dark Mode";  
+      : "Dark Mode";
+
 }
 
-document.addEventListener('keydown',(event) =>{
+document.addEventListener('keydown',(event)=>{
   const key = event.key;
-  if(key === 'Enter' || key.toLocalLowerCase() === 's'){
+  if (key === 'Enter' || key.toLocaleLowerCase() === 's' /*|| key === 'S' using lowercase*/) {
     beginEnd();
-  } else if(key.toLocaleLowerCase()==='p' || key === 'MediaPlayPause'){
+  }
+  else if(key.toLocaleLowerCase() === 'p' || key === 'MediaPlayPause'){
     playPause();
-  } else if(key.toLocalLowerCase() === 'd'){
+  }
+  else if(key.toLocaleLowerCase() === 'd'){
     changeTheme();
   }
 });
-
-
-
