@@ -104,6 +104,8 @@ document.addEventListener('keydown',(event) =>{
     playPause();
   } else if(key.toLocalLowerCase() === 'd'){
     changeTheme();
-  });
-
+  }
 });
+
+
+
